@@ -34,3 +34,16 @@
 .row>div {
     border: .2rem solid rgb(12, 12, 12);
 }
+
+#p1, #p2, #p3 {
+    border-top: none;
+}
+#p1, #p4, #p7 {
+    border-left: none;
+}
+#p3, #p6, #p9 {
+    border-right: none;
+}
+#p7, #p8, #p9 {
+    border-bottom: none;
+}
