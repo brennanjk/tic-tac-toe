@@ -18,8 +18,9 @@ const gameBoard = (() => {
         let index = i
         gameSpaces[i].addEventListener('click', e => {
         if (!gameMarkers[index]) {
-            gameMarkers[index] = player1.addMarker();
+            gameMarkers[index] = players.getPlayer().addMarker();
             addMarkers();
+            players.switchPlayer();
         }});
     }
 
@@ -39,9 +40,25 @@ const gameBoard = (() => {
     }
 })();
 
-const addPlayer = (name, marker) => {
-    const addMarker = () => {return marker};
-    return {addMarker};
-}
+const players = (() => {
 
-const player1 = addPlayer('Player 1', 'X');
+    // Player creator factory
+    const addPlayer = (name, marker) => {
+        const addMarker = () => {return marker};
+        return {addMarker};
+    }
+    
+    // Create players - possibly adjust this process later if desired
+    const player1 = addPlayer('Player 1', 'X');
+    const player2 = addPlayer('Player 2', 'O');
+
+    // Active player variable - will be used at game start and in the following function
+    let activePlayer = player1;
+
+    // Switch who's turn it is
+    const switchPlayer = () => (activePlayer === player1) ? activePlayer = player2 : activePlayer = player1;
+
+    const getPlayer = () => {return activePlayer};
+
+    return {switchPlayer, getPlayer}
+})();
