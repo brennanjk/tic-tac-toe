@@ -14,6 +14,15 @@ const gameBoard = (() => {
     // Array to hold above game board space variables
     const gameSpaces = [undefined, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9];
 
+    for (i = 1; i < gameSpaces.length; i++) {
+        let index = i
+        gameSpaces[i].addEventListener('click', e => {
+        if (!gameMarkers[index]) {
+            gameMarkers[index] = 'X';
+            addMarkers();
+        }});
+    }
+
     // Array to hold markers that we will use to update the space variables
     const gameMarkers = [undefined, 'X', '', 'O', 'X', 'X', 'O', '', '', ''];
 
@@ -26,6 +35,6 @@ const gameBoard = (() => {
     }
 
     return {
-        addMarkers,
+        addMarkers, gameMarkers,
     }
 })();
