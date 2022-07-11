@@ -18,7 +18,7 @@ const gameBoard = (() => {
         let index = i
         gameSpaces[i].addEventListener('click', e => {
         if (!gameMarkers[index]) {
-            gameMarkers[index] = 'X';
+            gameMarkers[index] = player1.addMarker();
             addMarkers();
         }});
     }
@@ -35,6 +35,13 @@ const gameBoard = (() => {
     }
 
     return {
-        addMarkers, gameMarkers,
+        addMarkers, gameMarkers, //gamemarkers is accessible right now for testing purposes only. REMOVE WHEN READY!
     }
 })();
+
+const addPlayer = (name, marker) => {
+    const addMarker = () => {return marker};
+    return {addMarker};
+}
+
+const player1 = addPlayer('Player 1', 'X');
