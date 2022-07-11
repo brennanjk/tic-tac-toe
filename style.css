@@ -18,9 +18,19 @@
 .game-board {
     border: 2rem solid black;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     width: 35rem;
     height: 35rem;
     align-items: center;
+    padding: 1rem;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+}
+
+.row>div {
+    border: .2rem solid rgb(12, 12, 12);
 }
