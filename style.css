@@ -8,6 +8,10 @@
     margin: 0;
 }
 
+body {
+    font-size: 75px;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -33,6 +37,9 @@
 
 .row>div {
     border: .2rem solid rgb(12, 12, 12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #p1, #p2, #p3 {
