@@ -38,16 +38,21 @@ const gameBoard = (() => {
 
     // Check if there is a winner or tie
     const gameOverCheck = function() {
-        if ((pos1.textContent === pos2.textContent && pos1.textContent === pos3.textContent && pos1.textContent !== '') ||
-            (pos4.textContent === pos5.textContent && pos4.textContent == pos6.textContent && pos4.textContent !== '') ||
-            (pos7.textContent === pos8.textContent && pos7.textContent == pos9.textContent && pos7.textContent !== '') ||
-            (pos1.textContent === pos4.textContent && pos1.textContent == pos7.textContent && pos1.textContent !== '') ||
-            (pos2.textContent === pos5.textContent && pos2.textContent == pos8.textContent && pos2.textContent !== '') ||
-            (pos3.textContent === pos6.textContent && pos3.textContent == pos9.textContent && pos3.textContent !== '') ||
-            (pos1.textContent === pos5.textContent && pos1.textContent == pos9.textContent && pos1.textContent !== '') ||
-            (pos7.textContent === pos5.textContent && pos7.textContent == pos3.textContent && pos7.textContent !== '')) {
-            console.log("Success");
-        } else {
+        if ((gameMarkers[1] === gameMarkers[2] && gameMarkers[1] === gameMarkers[3] && gameMarkers[1] !== '') ||
+            (gameMarkers[4] === gameMarkers[5] && gameMarkers[4] === gameMarkers[6] && gameMarkers[4] !== '') ||
+            (gameMarkers[7] === gameMarkers[8] && gameMarkers[7] === gameMarkers[9] && gameMarkers[7] !== '') ||
+            (gameMarkers[1] === gameMarkers[4] && gameMarkers[1] === gameMarkers[7] && gameMarkers[1] !== '') ||
+            (gameMarkers[2] === gameMarkers[5] && gameMarkers[2] === gameMarkers[8] && gameMarkers[2] !== '') ||
+            (gameMarkers[3] === gameMarkers[6] && gameMarkers[3] === gameMarkers[9] && gameMarkers[3] !== '') ||
+            (gameMarkers[1] === gameMarkers[5] && gameMarkers[1] === gameMarkers[9] && gameMarkers[1] !== '') ||
+            (gameMarkers[7] === gameMarkers[5] && gameMarkers[7] === gameMarkers[3] && gameMarkers[7] !== '')) {
+            console.log("Winner");
+        } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
+                   gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
+                   gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
+            console.log("Tie-game")
+        }
+        else {
             console.log("Fail")
         }
     }
