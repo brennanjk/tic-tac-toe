@@ -19,6 +19,7 @@ const gameBoard = (() => {
         gameSpaces[i].addEventListener('click', e => {
         if (!gameMarkers[index]) {
             gameMarkers[index] = players.getPlayer().addMarker();
+            gameSpaces[index].classList.add(players.getPlayer().addClass());
             addMarkers();
             players.switchPlayer();
         }});
@@ -42,14 +43,15 @@ const gameBoard = (() => {
 
 const players = (() => {
     // Player creator factory
-    const addPlayer = (name, marker) => {
+    const addPlayer = (name, marker, markerclass) => {
         const addMarker = () => {return marker};
-        return {addMarker};
+        const addClass = () => {return markerclass};
+        return {addMarker, addClass};
     }
     
     // Create players - possibly adjust this process later if desired
-    const player1 = addPlayer('Player 1', 'X');
-    const player2 = addPlayer('Player 2', 'O');
+    const player1 = addPlayer('Player 1', 'X', 'x');
+    const player2 = addPlayer('Player 2', 'O', 'o');
 
     // Active player variable - will be used at game start and in the following function
     let activePlayer = player1;
