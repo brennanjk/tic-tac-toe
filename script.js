@@ -32,13 +32,10 @@ const gameBoard = (() => {
     const addMarkers = function() {
         for (let i = 1; i < gameMarkers.length; i++) {
             gameSpaces[i].textContent = gameMarkers[i];
-            console.log(gameSpaces[i]);
         }
     }
 
-    return {
-        addMarkers, gameMarkers, //gamemarkers is accessible right now for testing purposes only. REMOVE WHEN READY!
-    }
+    return {addMarkers}
 })();
 
 const players = (() => {
