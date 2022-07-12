@@ -1,4 +1,11 @@
-
+:root {
+    --dark-bg: #0f0e0e;
+    --black-bg: #000000;
+    --cool-blue: #007adf;
+    --cool-red: #c4333c;
+    --grey-black: #1f1f1f;
+    --grey-blue: #839c98;
+}
 
 *,
 *::before,
@@ -10,19 +17,28 @@
 
 body {
     font-size: 75px;
-    background-color: rgb(15, 14, 14);
+    background-color: #0f0e0e;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-bg);
+    color: var(--grey-blue);
+    height: 15rem;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .game-board {
-    border: .2rem solid rgb(31, 31, 31);
-    background-color: black;
+    border: .2rem solid var(--grey-black);
+    background-color: var(--black-bg);
     border-radius: 30px;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -30,6 +46,7 @@ body {
     height: 38rem;
     align-items: center;
     padding: 2.5rem;
+    margin: 5rem;
 }
 
 .row {
@@ -39,10 +56,15 @@ body {
 }
 
 .row>div {
-    border: .2rem solid rgb(70, 90, 87);
+    border: .2rem solid var(--grey-blue);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.row:hover {
+    cursor: crosshair;
+    
 }
 
 #p1, #p2, #p3 {
@@ -59,9 +81,9 @@ body {
 }
 
 .x {
-    color: #c4333c;
+    color: var(--cool-red);
 }
 
 .o {
-    color: #007adf;
+    color: var(--cool-blue);
 }
