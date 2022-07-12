@@ -25,7 +25,7 @@ const gameBoard = (() => {
     }
 
     // Array to hold markers that we will use to update the space variables
-    const gameMarkers = [undefined, 'X', '', 'O', 'X', 'X', 'O', '', '', ''];
+    const gameMarkers = [undefined, '', '', '', '', '', '', '', '', ''];
 
     //Function to update spaces with markers
     const addMarkers = function() {
@@ -41,7 +41,6 @@ const gameBoard = (() => {
 })();
 
 const players = (() => {
-
     // Player creator factory
     const addPlayer = (name, marker) => {
         const addMarker = () => {return marker};
