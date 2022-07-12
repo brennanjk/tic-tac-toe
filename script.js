@@ -22,6 +22,7 @@ const gameBoard = (() => {
             gameSpaces[index].classList.add(players.getPlayer().addClass());
             addMarkers();
             players.switchPlayer();
+            gameOverCheck();
         }});
     }
 
@@ -35,7 +36,23 @@ const gameBoard = (() => {
         }
     }
 
-    return {addMarkers}
+    // Check if there is a winner or tie
+    const gameOverCheck = function() {
+        if ((pos1.textContent === pos2.textContent && pos1.textContent === pos3.textContent && pos1.textContent !== '') ||
+            (pos4.textContent === pos5.textContent && pos4.textContent == pos6.textContent && pos4.textContent !== '') ||
+            (pos7.textContent === pos8.textContent && pos7.textContent == pos9.textContent && pos7.textContent !== '') ||
+            (pos1.textContent === pos4.textContent && pos1.textContent == pos7.textContent && pos1.textContent !== '') ||
+            (pos2.textContent === pos5.textContent && pos2.textContent == pos8.textContent && pos2.textContent !== '') ||
+            (pos3.textContent === pos6.textContent && pos3.textContent == pos9.textContent && pos3.textContent !== '') ||
+            (pos1.textContent === pos5.textContent && pos1.textContent == pos9.textContent && pos1.textContent !== '') ||
+            (pos7.textContent === pos5.textContent && pos7.textContent == pos3.textContent && pos7.textContent !== '')) {
+            console.log("Success");
+        } else {
+            console.log("Fail")
+        }
+    }
+
+    return {addMarkers, gameOverCheck} //Remove gameOverCheck return when finished testing
 })();
 
 const players = (() => {
