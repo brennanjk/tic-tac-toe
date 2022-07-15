@@ -36,6 +36,31 @@ body {
     align-items: center;
 }
 
+.player-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-icon>img {
+    width: 10rem;
+}
+
+.player-one {
+    filter: invert(30%) sepia(94%) saturate(1328%) hue-rotate(330deg) brightness(78%);
+}
+
+.player-two {
+    filter: invert(31%) sepia(81%) saturate(2083%) hue-rotate(190deg) brightness(92%) contrast(101%);
+}
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .game-board {
     border: .2rem solid var(--grey-black);
     background-color: var(--black-bg);
