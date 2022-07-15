@@ -30,11 +30,11 @@ body {
     height: 15rem;
 }
 
-#start-game {
+.start-game {
     position: fixed;
     width: 16rem;
     height: 6rem;
-    top: 50%;
+    top: 30%;
     left: 50%;
     margin-top: -3rem;
     margin-left: -8rem;
@@ -44,6 +44,12 @@ body {
     color: var(--grey-blue);
     border-radius: 30px;
 }
+
+#hide {
+    top: 0%;
+    filter: opacity(0%);
+}
+
 .container {
     display: flex;
     justify-content: center;
