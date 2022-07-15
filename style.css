@@ -41,6 +41,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+    font-size: 3rem;
 }
 
 .player-icon>img {
@@ -48,11 +50,15 @@ body {
 }
 
 .player-one {
-    filter: invert(30%) sepia(94%) saturate(1328%) hue-rotate(330deg) brightness(78%);
+    filter: invert(30%) sepia(94%) saturate(1328%) hue-rotate(330deg) brightness(68%);
 }
 
 .player-two {
-    filter: invert(31%) sepia(81%) saturate(2083%) hue-rotate(190deg) brightness(92%) contrast(101%);
+    filter: invert(31%) sepia(81%) saturate(2083%) hue-rotate(190deg) brightness(82%) contrast(101%);
+}
+
+.not-my-turn {
+    filter:opacity(90%);
 }
 
 .board-container {

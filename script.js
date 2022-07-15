@@ -23,8 +23,11 @@ const gameBoard = (() => {
                 gameMarkers[index] = players.getPlayer().addMarker();
                 gameSpaces[index].classList.add(players.getPlayer().addClass());
                 addMarkers();
-                players.switchPlayer();
                 gameOverCheck();
+                if (!gameOver) {
+                    players.switchPlayer();
+                    players.switchIcon();
+                }
         }});
     }
 
@@ -57,7 +60,7 @@ const gameBoard = (() => {
             gameOver = true;
         }
         else {
-            console.log("Fail")
+            console.log("Game-On")
         }
     }
 
@@ -65,6 +68,11 @@ const gameBoard = (() => {
 })();
 
 const players = (() => {
+
+    //target both player icon divs
+    const getPlayerOne = document.querySelector('.player-one');
+    const getPlayerTwo = document.querySelector('.player-two');
+
     // Player creator factory
     const addPlayer = (name, marker, markerclass) => {
         const addMarker = () => {return marker};
@@ -79,10 +87,19 @@ const players = (() => {
     // Active player variable - will be used at game start and in the following function
     let activePlayer = player1;
 
+    // Have player-two start off with not-my-turn class
+    getPlayerTwo.classList.add('not-my-turn');
     // Switch who's turn it is
     const switchPlayer = () => (activePlayer === player1) ? activePlayer = player2 : activePlayer = player1;
-
+    const switchIcon = function() {
+        if (activePlayer === player2) {
+            getPlayerTwo.classList.remove('not-my-turn'); getPlayerOne.classList.add('not-my-turn');
+        }
+        else if (activePlayer === player1) {
+            getPlayerOne.classList.remove('not-my-turn'); getPlayerTwo.classList.add('not-my-turn');
+        }
+    }
     const getPlayer = () => {return activePlayer};
 
-    return {switchPlayer, getPlayer}
+    return {switchPlayer, getPlayer, switchIcon};
 })();
