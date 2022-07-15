@@ -23,6 +23,7 @@ const gameBoard = (() => {
         gameOn = true;
         board.classList.remove('board-off')
         players.setIcon();
+        clearMarkers();
         startButton.id = ('hide');
     })
 
@@ -53,6 +54,13 @@ const gameBoard = (() => {
         for (let i = 1; i < gameMarkers.length; i++) {
             gameSpaces[i].textContent = gameMarkers[i];
         }
+    }
+
+    const clearMarkers = function() {
+        for (let i = 1; i < gameMarkers.length; i++) {
+            gameMarkers[i] = '';
+        }
+        addMarkers();
     }
 
     // Check if there is a winner or tie
