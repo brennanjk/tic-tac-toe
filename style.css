@@ -43,6 +43,7 @@ body {
     align-items: center;
     gap: 1rem;
     font-size: 3rem;
+    transition: filter .2s;
 }
 
 .player-icon>img {
@@ -58,7 +59,7 @@ body {
 }
 
 .not-my-turn {
-    filter:opacity(90%);
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0) brightness(0%) contrast(0%) opacity(90%); /* zero'd out properties added for transition effect*/
 }
 
 .board-container {
