@@ -30,6 +30,20 @@ body {
     height: 15rem;
 }
 
+#start-game {
+    position: fixed;
+    width: 16rem;
+    height: 6rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -3rem;
+    margin-left: -8rem;
+    font-size: 1.8rem;
+    border: .2rem solid var(--black-bg);
+    background-color: var(--grey-black);
+    color: var(--grey-blue);
+    border-radius: 30px;
+}
 .container {
     display: flex;
     justify-content: center;
