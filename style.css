@@ -44,12 +44,14 @@ body {
     color: var(--grey-blue);
     border-radius: 30px;
     z-index: 10;
-    transition: transform 1s;
+    transition: transform .5s,
+                filter 2s,
+                top 1ms;
 }
 
 .start-game:hover {
-    transform: scale(1.2);
-    filter: brightness(170%);
+    transform: scale(1.1);
+    filter: brightness(175%);
 }
 
 #hide {

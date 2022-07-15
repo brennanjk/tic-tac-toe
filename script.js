@@ -69,7 +69,8 @@ const gameBoard = (() => {
             gameOn = false;
             gameOver = true;
             board.classList.add('board-off');
-            startButton.removeAttribute('id')
+            startButton.removeAttribute('id');
+            startButton.textContent = 'Play Again?';
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
@@ -77,7 +78,8 @@ const gameBoard = (() => {
             gameOn = false;
             gameOver = true;
             board.classList.add('board-off');
-            startButton.removeAttribute('id')
+            startButton.removeAttribute('id');
+            startButton.textContent = 'Play Again?';
         }
         else {
             console.log("Game-On")
