@@ -10,6 +10,7 @@ const gameBoard = (() => {
     const pos7 = document.getElementById('p7');
     const pos8 = document.getElementById('p8');
     const pos9 = document.getElementById('p9');
+    let gameOver = false;
 
     // Array to hold above game board space variables
     const gameSpaces = [undefined, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9];
@@ -17,12 +18,13 @@ const gameBoard = (() => {
     for (i = 1; i < gameSpaces.length; i++) {
         let index = i
         gameSpaces[i].addEventListener('click', e => {
-        if (!gameMarkers[index]) {
-            gameMarkers[index] = players.getPlayer().addMarker();
-            gameSpaces[index].classList.add(players.getPlayer().addClass());
-            addMarkers();
-            players.switchPlayer();
-            gameOverCheck();
+            // if statement to check if gameOver is false AND if the space is empty
+            if (!gameOver && !gameMarkers[index]) {
+                gameMarkers[index] = players.getPlayer().addMarker();
+                gameSpaces[index].classList.add(players.getPlayer().addClass());
+                addMarkers();
+                players.switchPlayer();
+                gameOverCheck();
         }});
     }
 
@@ -47,10 +49,12 @@ const gameBoard = (() => {
             (gameMarkers[1] === gameMarkers[5] && gameMarkers[1] === gameMarkers[9] && gameMarkers[1] !== '') ||
             (gameMarkers[7] === gameMarkers[5] && gameMarkers[7] === gameMarkers[3] && gameMarkers[7] !== '')) {
             console.log("Winner");
+            gameOver = true;
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
             console.log("Tie-game")
+            gameOver = true;
         }
         else {
             console.log("Fail")
