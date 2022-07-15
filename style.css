@@ -70,16 +70,17 @@ body {
     width: 10rem;
 }
 
-.player-one {
+.player-one,
+.player-two {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0) brightness(0%) contrast(0%) opacity(90%); /* zero'd out properties added for transition effect*/
+}
+
+.player-one.players-turn {
     filter: invert(30%) sepia(94%) saturate(1328%) hue-rotate(330deg) brightness(68%);
 }
 
-.player-two {
+.player-two.players-turn {
     filter: invert(31%) sepia(81%) saturate(2083%) hue-rotate(190deg) brightness(82%) contrast(101%);
-}
-
-.not-my-turn {
-    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0) brightness(0%) contrast(0%) opacity(90%); /* zero'd out properties added for transition effect*/
 }
 
 .board-container {

@@ -14,10 +14,13 @@ const gameBoard = (() => {
     let gameOn = false; 
     let gameOver = false;
 
+    const gameStatus = () => {return gameOn};
+
     // Make start button change gameOn to true and remove button
 
     startButton.addEventListener('click', e => {
         gameOn = true;
+        players.setIcon();
         startButton.id = ('hide');
     })
 
@@ -100,19 +103,23 @@ const players = (() => {
     // Active player variable - will be used at game start and in the following function
     let activePlayer = player1;
 
-    // Have player-two start off with not-my-turn class
-    getPlayerTwo.classList.add('not-my-turn');
     // Switch who's turn it is
     const switchPlayer = () => (activePlayer === player1) ? activePlayer = player2 : activePlayer = player1;
+
+    const setIcon = () => {
+        getPlayerOne.classList.add('players-turn');
+        getPlayerTwo.classList.remove('players-turn');
+    }
+
     const switchIcon = function() {
         if (activePlayer === player2) {
-            getPlayerTwo.classList.remove('not-my-turn'); getPlayerOne.classList.add('not-my-turn');
+            getPlayerTwo.classList.add('players-turn'); getPlayerOne.classList.remove('players-turn');
         }
         else if (activePlayer === player1) {
-            getPlayerOne.classList.remove('not-my-turn'); getPlayerTwo.classList.add('not-my-turn');
+            getPlayerOne.classList.add('players-turn'); getPlayerTwo.classList.remove('players-turn');
         }
     }
     const getPlayer = () => {return activePlayer};
 
-    return {switchPlayer, getPlayer, switchIcon};
+    return {switchPlayer, getPlayer, setIcon, switchIcon};
 })();
