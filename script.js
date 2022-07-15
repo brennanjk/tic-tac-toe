@@ -11,6 +11,7 @@ const gameBoard = (() => {
     const pos8 = document.getElementById('p8');
     const pos9 = document.getElementById('p9');
     const startButton = document.querySelector('.start-game');
+    const board = document.querySelector('.game-board')
     let gameOn = false; 
     let gameOver = false;
 
@@ -20,6 +21,7 @@ const gameBoard = (() => {
 
     startButton.addEventListener('click', e => {
         gameOn = true;
+        board.classList.remove('board-off')
         players.setIcon();
         startButton.id = ('hide');
     })
@@ -66,6 +68,7 @@ const gameBoard = (() => {
             console.log("Winner");
             gameOn = false;
             gameOver = true;
+            board.classList.add('board-off');
             startButton.removeAttribute('id')
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
@@ -73,6 +76,7 @@ const gameBoard = (() => {
             console.log("Tie-game")
             gameOn = false;
             gameOver = true;
+            board.classList.add('board-off');
             startButton.removeAttribute('id')
         }
         else {
