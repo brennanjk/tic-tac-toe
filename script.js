@@ -13,35 +13,18 @@ const gameBoard = (() => {
     const container = document.querySelector('.container');
     const startButton = document.querySelector('.start-game');
     const board = document.querySelector('.game-board')
-    let gameOn = false;
-
-    const gameStatus = () => {return gameOn};
-
-    // Make start button change gameOn to true and remove button
-
-    startButton.addEventListener('click', e => {
-        gameOn = true;
-        board.classList.remove('board-off')
-        players.setIcon();
-        clearMarkers();
-        startButton.id = ('hide');
-        // reset activeplayer to Player 1 in event Player 2 wins a game and the 'Play Again?' button is pressed
-        if (players.getPlayer().getName() === 'Player 2') {
-            players.switchPlayer();
-        }
-        // remove game-result div if present
-        if (container.childElementCount > 3) {
-            container.lastChild.remove();
-        }
-    })
 
     // Array to hold above game board space variables
     const gameSpaces = [undefined, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9];
 
+    // Array to hold markers that we will use to update the space variables
+    const gameMarkers = [undefined, '', '', '', '', '', '', '', '', ''];
+
+    // Add event listeners to all gameboard spaces
     for (i = 1; i < gameSpaces.length; i++) {
         let index = i
         gameSpaces[i].addEventListener('click', e => {
-            // if statement to check if gameOn is true AND if the space is empty
+            // if statement to check if gameOn is true AND if the space is empty before executing code below
             if (gameOn && !gameMarkers[index]) {
                 gameMarkers[index] = players.getPlayer().addMarker();
                 gameSpaces[index].classList.add(players.getPlayer().addClass());
@@ -54,9 +37,6 @@ const gameBoard = (() => {
         }});
     }
 
-    // Array to hold markers that we will use to update the space variables
-    const gameMarkers = [undefined, '', '', '', '', '', '', '', '', ''];
-
     //Function to update spaces with markers
     const addMarkers = function() {
         for (let i = 1; i < gameMarkers.length; i++) {
@@ -64,6 +44,7 @@ const gameBoard = (() => {
         }
     }
 
+    // Function to reset markers and classes from board space divs when game is relayed
     const clearMarkers = function() {
         for (let i = 1; i < gameMarkers.length; i++) {
             gameMarkers[i] = '';
@@ -72,6 +53,27 @@ const gameBoard = (() => {
         }
         addMarkers();
     }
+
+    // game logic variable
+    let gameOn = false;
+
+    // Make start button change gameOn to true and then hide itself.
+    startButton.addEventListener('click', e => {
+        gameOn = true;
+        // Board starts off semi-transparent; remove that effect
+        board.classList.remove('board-off')
+        players.setIcon();
+        clearMarkers(); // make sure markers are cleared before starting the game
+        startButton.id = ('hide');
+        // reset activeplayer to Player 1 in event Player 2 wins a game and the 'Play Again?' button is pressed
+        if (players.getPlayer().getName() === 'Player 2') {
+            players.switchPlayer();
+        }
+        // remove game-result div if present
+        if (container.childElementCount > 3) {
+            container.lastChild.remove();
+        }
+    })
 
     // Check if there is a winner or tie
     const gameOverCheck = function() {
@@ -83,9 +85,9 @@ const gameBoard = (() => {
             (gameMarkers[3] === gameMarkers[6] && gameMarkers[3] === gameMarkers[9] && gameMarkers[3] !== '') ||
             (gameMarkers[1] === gameMarkers[5] && gameMarkers[1] === gameMarkers[9] && gameMarkers[1] !== '') ||
             (gameMarkers[7] === gameMarkers[5] && gameMarkers[7] === gameMarkers[3] && gameMarkers[7] !== '')) {
-            console.log("Winner");
             gameOn = false;
             board.classList.add('board-off');
+            // Unhide start button - change text to 'Play Again' rather than 'Start Game'
             startButton.removeAttribute('id');
             startButton.textContent = 'Play Again?';
             //create div to display winner
@@ -94,7 +96,6 @@ const gameBoard = (() => {
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
-            console.log("Tie-game")
             gameOn = false;
             board.classList.add('board-off');
             startButton.removeAttribute('id');
@@ -102,12 +103,7 @@ const gameBoard = (() => {
             //create div to display tie game
             container.appendChild(declareResult.declareTie());
         }
-        else {
-            console.log("Game-On")
-        }
     }
-
-    return {addMarkers, gameOverCheck} //Remove gameOverCheck return when finished testing
 })();
 
 const players = (() => {
