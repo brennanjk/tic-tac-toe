@@ -12,8 +12,7 @@ const gameBoard = (() => {
     const pos9 = document.getElementById('p9');
     const startButton = document.querySelector('.start-game');
     const board = document.querySelector('.game-board')
-    let gameOn = false; 
-    let gameOver = false;
+    let gameOn = false;
 
     const gameStatus = () => {return gameOn};
 
@@ -33,13 +32,13 @@ const gameBoard = (() => {
     for (i = 1; i < gameSpaces.length; i++) {
         let index = i
         gameSpaces[i].addEventListener('click', e => {
-            // if statement to check if gameOver is false AND if the space is empty
-            if (gameOn && !gameOver && !gameMarkers[index]) {
+            // if statement to check if gameOn is true AND if the space is empty
+            if (gameOn && !gameMarkers[index]) {
                 gameMarkers[index] = players.getPlayer().addMarker();
                 gameSpaces[index].classList.add(players.getPlayer().addClass());
                 addMarkers();
                 gameOverCheck();
-                if (!gameOver) {
+                if (gameOn) {
                     players.switchPlayer();
                     players.switchIcon();
                 }
@@ -59,6 +58,7 @@ const gameBoard = (() => {
     const clearMarkers = function() {
         for (let i = 1; i < gameMarkers.length; i++) {
             gameMarkers[i] = '';
+            gameSpaces[i].classList.remove('x', 'o')
         }
         addMarkers();
     }
@@ -75,7 +75,6 @@ const gameBoard = (() => {
             (gameMarkers[7] === gameMarkers[5] && gameMarkers[7] === gameMarkers[3] && gameMarkers[7] !== '')) {
             console.log("Winner");
             gameOn = false;
-            gameOver = true;
             board.classList.add('board-off');
             startButton.removeAttribute('id');
             startButton.textContent = 'Play Again?';
@@ -84,7 +83,6 @@ const gameBoard = (() => {
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
             console.log("Tie-game")
             gameOn = false;
-            gameOver = true;
             board.classList.add('board-off');
             startButton.removeAttribute('id');
             startButton.textContent = 'Play Again?';
