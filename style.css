@@ -155,3 +155,15 @@ body {
 .o {
     color: var(--cool-blue);
 }
+
+.game-result {
+    position: fixed;
+    padding: 1rem;
+    top: 65%;
+    background-color: var(--black-bg);
+    color: var(--grey-blue);
+    border: solid 1px var(--grey-blue);
+    border-radius: 10px;
+    z-index: 10;
+    font-size: 3.5rem;
+}

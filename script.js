@@ -10,6 +10,7 @@ const gameBoard = (() => {
     const pos7 = document.getElementById('p7');
     const pos8 = document.getElementById('p8');
     const pos9 = document.getElementById('p9');
+    const container = document.querySelector('.container');
     const startButton = document.querySelector('.start-game');
     const board = document.querySelector('.game-board')
     let gameOn = false;
@@ -27,6 +28,10 @@ const gameBoard = (() => {
         // reset activeplayer to Player 1 in event Player 2 wins a game and the 'Play Again?' button is pressed
         if (players.getPlayer().getName() === 'Player 2') {
             players.switchPlayer();
+        }
+        // remove game-result div if present
+        if (container.childElementCount > 3) {
+            container.lastChild.remove();
         }
     })
 
@@ -83,6 +88,9 @@ const gameBoard = (() => {
             board.classList.add('board-off');
             startButton.removeAttribute('id');
             startButton.textContent = 'Play Again?';
+            //create div to display winner
+            declareResult.declareWinner().textContent=`${players.getPlayer().getName()} is the winner!`;
+            container.appendChild(declareResult.declareWinner());
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
@@ -91,6 +99,8 @@ const gameBoard = (() => {
             board.classList.add('board-off');
             startButton.removeAttribute('id');
             startButton.textContent = 'Play Again?';
+            //create div to display tie game
+            container.appendChild(declareResult.declareTie());
         }
         else {
             console.log("Game-On")
@@ -140,4 +150,17 @@ const players = (() => {
     const getPlayer = () => {return activePlayer};
 
     return {switchPlayer, getPlayer, setIcon, switchIcon};
+})();
+
+const declareResult = (() => {
+    const winner = document.createElement('div');
+    winner.classList.add('game-result');
+    const declareWinner = () => {return winner};
+
+    const tie = document.createElement('div');
+    tie.classList.add('game-result');
+    tie.textContent = 'Tie match!';
+    const declareTie = () => {return tie};
+
+    return {declareWinner, declareTie}
 })();
