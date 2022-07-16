@@ -15,8 +15,14 @@
     margin: 0;
 }
 
+html {
+    font-size: 15px;
+}
+
 body {
-    font-size: 75px;
+    display: flex;
+    flex-direction: column;
+    /*font-size: 75px;*/
     background-color: #0f0e0e;
     height: 100vh;
 }
@@ -28,6 +34,7 @@ body {
     background-color: var(--black-bg);
     color: var(--grey-blue);
     height: 12rem;
+    font-size: 5rem;
 }
 
 .start-game {
@@ -113,6 +120,7 @@ body {
     margin: 5rem;
     transition: filter 1.5s ease-in;
     z-index: 5;
+    font-size: 6rem;
 }
 
 .game-board.board-off {
@@ -176,3 +184,4 @@ body {
     0% { opacity: 0;}
     100% {opacity: 1;}
 }
+
