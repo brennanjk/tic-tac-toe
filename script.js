@@ -24,6 +24,10 @@ const gameBoard = (() => {
         players.setIcon();
         clearMarkers();
         startButton.id = ('hide');
+        // reset activeplayer to Player 1 in event Player 2 wins a game and the 'Play Again?' button is pressed
+        if (players.getPlayer().getName() === 'Player 2') {
+            players.switchPlayer();
+        }
     })
 
     // Array to hold above game board space variables
@@ -58,6 +62,7 @@ const gameBoard = (() => {
     const clearMarkers = function() {
         for (let i = 1; i < gameMarkers.length; i++) {
             gameMarkers[i] = '';
+            // remove any classes that have been added to board space divs when 'Play Again?' button is pressed
             gameSpaces[i].classList.remove('x', 'o')
         }
         addMarkers();
@@ -103,9 +108,10 @@ const players = (() => {
 
     // Player creator factory
     const addPlayer = (name, marker, markerclass) => {
+        const getName = () => {return name};
         const addMarker = () => {return marker};
         const addClass = () => {return markerclass};
-        return {addMarker, addClass};
+        return {getName, addMarker, addClass};
     }
     
     // Create players - possibly adjust this process later if desired
