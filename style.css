@@ -74,7 +74,7 @@ body {
     align-items: center;
     gap: 1rem;
     font-size: 3rem;
-    transition: filter .2s;
+    transition: filter .5s;
 }
 
 .player-icon>img {
@@ -83,7 +83,7 @@ body {
 
 .player-one,
 .player-two {
-    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0) brightness(0%) contrast(0%) opacity(90%); /* zero'd out properties added for transition effect*/
+    filter: invert(30%) sepia(90%) saturate(1600%) hue-rotate(260deg) brightness(0%) contrast(0%) opacity(50%); /* zero'd out properties added for transition effect*/
 }
 
 .player-one.players-turn {
