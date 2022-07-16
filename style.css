@@ -166,4 +166,11 @@ body {
     border-radius: 10px;
     z-index: 10;
     font-size: 3.5rem;
+    opacity: 1;
+    animation: fade-in 2s ease-in;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0;}
+    100% {opacity: 1;}
 }
