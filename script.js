@@ -13,6 +13,9 @@ const gameBoard = (() => {
     const container = document.querySelector('.container');
     const startButton = document.querySelector('.start-game');
     const board = document.querySelector('.game-board')
+    const soundStart = new Audio("audio/start-game-sound.wav")
+    const soundClick = new Audio("audio/Click-Sound.wav");
+    const soundSuccess = new Audio("audio/Success-Sound.wav");
 
     // Array to hold above game board space variables
     const gameSpaces = [undefined, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9];
@@ -28,6 +31,7 @@ const gameBoard = (() => {
             if (gameOn && !gameMarkers[index]) {
                 gameMarkers[index] = players.getPlayer().addMarker();
                 gameSpaces[index].classList.add(players.getPlayer().addClass());
+                soundClick.play();
                 addMarkers();
                 gameOverCheck();
                 if (gameOn) {
@@ -60,6 +64,7 @@ const gameBoard = (() => {
     // Make start button change gameOn to true and then hide itself.
     startButton.addEventListener('click', e => {
         gameOn = true;
+        soundStart.play(); //play sound on button click
         // Board starts off semi-transparent; remove that effect
         board.classList.remove('board-off')
         players.setIcon();
@@ -93,6 +98,7 @@ const gameBoard = (() => {
             //create div to display winner
             declareResult.declareWinner().textContent=`${players.getPlayer().getName()} is the winner!`;
             container.appendChild(declareResult.declareWinner());
+            soundSuccess.play();
         } else if (gameMarkers[1] !== '' && gameMarkers[2] !== '' && gameMarkers[3] !== '' &&
                    gameMarkers[4] !== '' && gameMarkers[5] !== '' && gameMarkers[6] !== '' &&
                    gameMarkers[7] !== '' && gameMarkers[8] !== '' && gameMarkers[9] !== ''){
@@ -102,6 +108,7 @@ const gameBoard = (() => {
             startButton.textContent = 'Play Again?';
             //create div to display tie game
             container.appendChild(declareResult.declareTie());
+            soundSuccess.play();
         }
     }
 })();
